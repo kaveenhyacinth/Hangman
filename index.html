@@ -5,42 +5,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Hangman is a game which has been built by Kaveen Hyacinth as a hobby project. Play and enjoy!">
     <title>Hangman by Kaveen Hyacinth</title>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Montserrat:wght@300&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/index.css">
 </head>
 <body>
-    <header class="header-container">
-        <!-- team-1 score board -->
-        <div id="team-1" class="score"></div>
-        <div class="heading">Hangman</div>
-        <!-- team-2 score board -->
-        <div id="team-1" class="score"></div>
-    </header>
-
-    <main class="main-container">
-        <!-- drag&drop letters goes here -->
-        <section class="guess-section">
-            <!-- draggable letters -->
-            <div id="origin" class="letter-box"></div>
-            <!-- droppable drop-zone -->
-            <div id="dropzone-success" class="letter-box"></div>
-            <!-- non-droppable wrong letter drop-zone -->
-            <div id="dropzone-wrong" class="letter-box"></div>
-        </section>
-        <!-- letter blanks and hangman filling goes here -->
-        <section class="result-area">
-            <div class="blanks"></div>
-            <div class="hangman"></div>
-        </section>
-        <!-- game action buttons goes here -->
-        <section class="action-buttons">
-            <button id="stop"></button>
-            <button class="restart"></button>
-        </section>
-    </main>
-
-    <footer class="footer-container">
-        Hangman Classic | Copyright &copy; Kaveen Hyacinth 2020
-    </footer>
+    <div class="wrapper">
+        <header class="header-container">
+            <!-- team-1 score board -->
+            <div id="team-1" class="score">Team 1</div>
+            <div class="heading">Hangman</div>
+            <!-- team-2 score board -->
+            <div id="team-2" class="score">Team 2</div>
+        </header>
+    
+        <main class="main-container">
+            <!-- drag&drop letters goes here -->
+            <section class="guess-section">
+                <!-- draggable letters -->
+                <div id="origin" class="letter-box">A</div>
+                <!-- droppable drop-zone -->
+                <div id="dropzone-success" class="letter-box">A</div>
+                <!-- non-droppable wrong letter drop-zone -->
+                <div id="dropzone-wrong" class="letter-box">A</div>
+            </section>
+            <!-- letter blanks and hangman filling goes here -->
+            <section class="result-section">
+                <div class="blanks">B</div>
+                <div class="hangman">B</div>
+            </section>
+            <!-- game action buttons goes here -->
+            <section class="action-btns">
+                <button id="stop">C</button>
+                <button class="restart">C</button>
+            </section>
+        </main>
+    
+        <footer class="footer-container">
+            Hangman Classic | Copyright &copy; Kaveen Hyacinth 2020
+        </footer>
+    </div>
 
     <script src="js/draganddrop.js"></script>
     <script src="js/script.js"></script>

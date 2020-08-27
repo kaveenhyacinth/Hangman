@@ -1,4 +1,71 @@
+html, body {
+  width: 100%;
+  height: 100%; }
+
+.wrapper {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 6fr 0.5fr;
+  grid-template-areas: "h" "m" "f"; }
+  .wrapper .header-container {
+    grid-area: h; }
+  .wrapper .main-container {
+    grid-area: m; }
+  .wrapper .footer-container {
+    grid-area: f; }
+
+.header-container {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: 1fr;
+  grid-template-areas: "t1 t1 t1 H H H H H H t2 t2 t2"; }
+  .header-container #team-1 {
+    grid-area: t1; }
+  .header-container .heading {
+    grid-area: H; }
+  .header-container #team-2 {
+    grid-area: t2; }
+
+.main-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 2fr 3fr 1fr;
+  grid-template-areas: "g" "r" "a"; }
+  .main-container .guess-section {
+    grid-area: g;
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    align-items: center; }
+  .main-container .result-section {
+    grid-area: r;
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    align-items: center; }
+  .main-container .action-btns {
+    grid-area: a; }
+
 * {
   margin: 0; }
+
+.wrapper {
+  background-color: #ffffff;
+  font-family: "Montserrat", sans-serif; }
+  .wrapper .header-container,
+  .wrapper .main-container,
+  .wrapper .footer-container {
+    background: #ffffff;
+    padding: 1rem;
+    color: #333149; }
+  .wrapper .header-container {
+    border-bottom: 1px solid #7CBABC; }
+  .wrapper .footer-container {
+    background: #2C4B3C;
+    color: #fff;
+    font-size: 0.8rem; }
 
 /*# sourceMappingURL=index.css.map */

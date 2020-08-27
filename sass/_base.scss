@@ -1,0 +1,31 @@
+* {
+    margin: 0;
+}
+
+.wrapper {
+    background-color: $bg-color;
+    font-family: $secondary-font;
+
+    .header-container,
+    .main-container,
+    .footer-container {
+        @include layer-1;
+        color: $text-color
+    }
+
+    .header-container {
+        border-bottom: 1px solid $accent-color;
+    }
+
+    .main-container {
+        @import "./widgets/guessSection";
+        @import "./widgets/resultSection";
+        @import "./widgets/actionButtons";
+    }
+
+    .footer-container {
+        background: $primary-color;
+        color: #fff;
+        font-size: 0.8rem;
+    }
+}
