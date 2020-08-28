@@ -1,0 +1,22 @@
+// flex-box
+@mixin flex-box {
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+}
+
+// layer-1 elements
+@mixin layer-1 {
+    background: $bg-color;
+    padding: 1rem;
+}
+
+// center x and y axis
+@mixin center-xy {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+}

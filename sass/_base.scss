@@ -1,0 +1,53 @@
+* {
+    margin: 0;
+}
+
+.wrapper {
+    background-color: $bg-color;
+    font-family: $secondary-font;
+
+    .header-container,
+    .main-container,
+    .footer-container {
+        @include layer-1;
+        color: $text-color
+    }
+
+    .header-container {
+
+        .team, .score {
+            font-weight: 700;
+
+            background: $accent-color;
+            color: #ffffff;
+        }
+
+        .heading {
+            font-family: $primary-font;
+            font-size: 2.5rem;
+            letter-spacing: 0.5rem;
+            text-align: center;
+
+            color: $text-color;
+
+            #sub-heading {
+                font-family: $secondary-font;
+                font-size: 1rem;
+                letter-spacing: 0.2rem;
+            }
+        }
+    }
+
+    .main-container {
+        padding: 0;
+        
+        @import "./widgets/guessSection";
+        @import "./widgets/resultSection";
+    }
+
+    .footer-container {
+        background: $primary-color;
+        color: #fff;
+        font-size: 0.8rem;
+    }
+}

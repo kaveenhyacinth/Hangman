@@ -1,3 +1,91 @@
-* {
-    margin: 0;
+html, body{
+    width: 100%;
+    height: 100%;
+}
+
+// main layout
+.wrapper {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 6fr 0.5fr;
+    grid-template-areas: 
+        "h"
+        "m"
+        "f";
+
+    .header-container {
+        grid-area: h;
+    }
+
+    .main-container {
+        grid-area: m;
+    }
+
+    .footer-container {
+        grid-area: f;
+    }
+}
+
+// header section layout
+.header-container {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: 1fr;
+    grid-template-areas: 
+        "t1 s1 H H H H H H H H s2 t2";
+
+    #team-1, #team-2,
+    #score-1, #score-2, .heading {
+        @include center-xy;
+    }
+
+    #team-1 {
+        grid-area: t1;
+    }
+    
+    #score-1 {
+        grid-area: s1;
+    }
+
+    .heading {
+        grid-area: H;
+    }
+
+    #score-2 {
+        grid-area: s2;
+    }
+
+    #team-2 {
+        grid-area: t2;
+    }
+}
+
+// body section layout
+.main-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 4fr 6fr;
+    grid-template-areas: 
+        "g"
+        "r";
+
+    .guess-section {
+        grid-area: g;
+
+        @include flex-box;
+    }
+
+    .result-section {
+        grid-area: r;
+
+        @include flex-box;
+    }
+
+    .action-btns {
+        grid-area: a;
+    }
 }
