@@ -1,0 +1,25 @@
+.action-btns {
+    @include center-xy;
+    // flex-direction: row;
+    // justify-content: flex-end;
+    height: 100%;
+    width: 5%;
+    border: 1px solid $accent-color;
+    
+
+    button {
+        width: 80%;
+        padding: 1rem;
+
+        border: none;
+
+        &#stop {
+            background: $fail-color;
+            margin-bottom: 0.5rem;
+        }
+
+        &#restart {
+            background: $success-color;
+        }
+    }
+}

@@ -7,36 +7,74 @@
     <title>Hangman by Kaveen Hyacinth</title>
     <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Montserrat:wght@300&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/index.css">
+    <script src="https://kit.fontawesome.com/a9aa543715.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <div class="wrapper">
         <header class="header-container">
             <!-- team-1 score board -->
-            <div id="team-1" class="score">Team 1</div>
-            <div class="heading">Hangman</div>
+            <div id="team-1" class="team">Team 1</div>
+            <div id="score-1" class="score">00</div>
+            <div class="heading">Hangman <span id="sub-heading">by Kaveen Hyacinth</span></div>
             <!-- team-2 score board -->
-            <div id="team-2" class="score">Team 2</div>
+            <div id="score-2" class="score">00</div>
+            <div id="team-2" class="team">Team 2</div>
         </header>
     
         <main class="main-container">
             <!-- drag&drop letters goes here -->
             <section class="guess-section">
                 <!-- draggable letters -->
-                <div id="origin" class="letter-box">A</div>
+                <div id="origin" class="letter-box">
+                    <div id="a" class="guess-letter" draggable="true">A</div>
+                    <div id="a" class="guess-letter" draggable="true">B</div>
+                    <div id="a" class="guess-letter" draggable="true">C</div>
+                    <div id="a" class="guess-letter" draggable="true">D</div>
+                    <div id="a" class="guess-letter" draggable="true">E</div>
+                    <div id="a" class="guess-letter" draggable="true">F</div>
+                    <div id="a" class="guess-letter" draggable="true">G</div>
+                    <div id="a" class="guess-letter" draggable="true">H</div>
+                    <div id="a" class="guess-letter" draggable="true">I</div>
+                    <div id="a" class="guess-letter" draggable="true">J</div>
+                    <div id="a" class="guess-letter" draggable="true">K</div>
+                    <div id="a" class="guess-letter" draggable="true">L</div>
+                    <div id="a" class="guess-letter" draggable="true">M</div>
+                    <div id="a" class="guess-letter" draggable="true">N</div>
+                    <div id="a" class="guess-letter" draggable="true">O</div>
+                    <div id="a" class="guess-letter" draggable="true">P</div>
+                    <div id="a" class="guess-letter" draggable="true">Q</div>
+                    <div id="a" class="guess-letter" draggable="true">R</div>
+                    <div id="a" class="guess-letter" draggable="true">S</div>
+                    <div id="a" class="guess-letter" draggable="true">T</div>
+                    <div id="a" class="guess-letter" draggable="true">U</div>
+                    <div id="a" class="guess-letter" draggable="true">V</div>
+                    <div id="a" class="guess-letter" draggable="true">W</div>
+                    <div id="a" class="guess-letter" draggable="true">X</div>
+                    <div id="a" class="guess-letter" draggable="true">Y</div>
+                    <div id="a" class="guess-letter" draggable="true">Z</div>
+                </div>
                 <!-- droppable drop-zone -->
-                <div id="dropzone-success" class="letter-box">A</div>
+                <!-- <div id="dropzone-success" class="letter-box">A</div> -->
                 <!-- non-droppable wrong letter drop-zone -->
-                <div id="dropzone-wrong" class="letter-box">A</div>
+                <div id="dropzone-wrong" class="letter-box">Wrong Guesses</div>
             </section>
             <!-- letter blanks and hangman filling goes here -->
             <section class="result-section">
-                <div class="blanks">B</div>
-                <div class="hangman">B</div>
-            </section>
-            <!-- game action buttons goes here -->
-            <section class="action-btns">
-                <button id="stop">C</button>
-                <button class="restart">C</button>
+                <div class="core-block">
+                    <div id="guesses-remaining">Guesses Remaining <span id="guesses">05</span></div>
+                    <div id="blanks">
+                        <div class="blank">__</div>
+                        <div class="blank">__</div>
+                        <div class="blank">__</div>
+                        <div class="blank">__</div>
+                    </div>
+                </div>
+                <div class="hangman-block">Hangman Gif</div>
+                <!-- game action buttons goes here -->
+                <div class="action-btns">
+                    <button id="stop"><i class="fas fa-hourglass-end"></i></button>
+                    <button id="restart"><i class="fas fa-redo-alt"></i></button>
+                </div>
             </section>
         </main>
     

@@ -1,0 +1,29 @@
+.guess-section {
+    padding: 0.5rem;
+
+    .letter-box {
+        width: 50%;
+        height: 100%;
+        border: 1px solid $accent-color;
+    }
+
+    #origin {
+        @include center-xy;
+        flex-direction: row;
+        flex-wrap: wrap;
+
+        .guess-letter {
+            width: 5%;
+            margin: 5px;
+            padding: 5px;
+
+            background: $accent-color;
+            color: #ffffff;
+            font-weight: 700;
+        }
+    }
+
+    #dropzone-wrong {
+        @include center-xy;
+    }
+}

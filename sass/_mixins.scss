@@ -11,3 +11,12 @@
     background: $bg-color;
     padding: 1rem;
 }
+
+// center x and y axis
+@mixin center-xy {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+}
