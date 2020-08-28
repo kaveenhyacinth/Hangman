@@ -26,32 +26,32 @@
             <section class="guess-section">
                 <!-- draggable letters -->
                 <div id="origin" class="letter-box">
-                    <div id="a" class="guess-letter" draggable="true">A</div>
-                    <div id="a" class="guess-letter" draggable="true">B</div>
-                    <div id="a" class="guess-letter" draggable="true">C</div>
-                    <div id="a" class="guess-letter" draggable="true">D</div>
-                    <div id="a" class="guess-letter" draggable="true">E</div>
-                    <div id="a" class="guess-letter" draggable="true">F</div>
-                    <div id="a" class="guess-letter" draggable="true">G</div>
-                    <div id="a" class="guess-letter" draggable="true">H</div>
-                    <div id="a" class="guess-letter" draggable="true">I</div>
-                    <div id="a" class="guess-letter" draggable="true">J</div>
-                    <div id="a" class="guess-letter" draggable="true">K</div>
-                    <div id="a" class="guess-letter" draggable="true">L</div>
-                    <div id="a" class="guess-letter" draggable="true">M</div>
-                    <div id="a" class="guess-letter" draggable="true">N</div>
-                    <div id="a" class="guess-letter" draggable="true">O</div>
-                    <div id="a" class="guess-letter" draggable="true">P</div>
-                    <div id="a" class="guess-letter" draggable="true">Q</div>
-                    <div id="a" class="guess-letter" draggable="true">R</div>
-                    <div id="a" class="guess-letter" draggable="true">S</div>
-                    <div id="a" class="guess-letter" draggable="true">T</div>
-                    <div id="a" class="guess-letter" draggable="true">U</div>
-                    <div id="a" class="guess-letter" draggable="true">V</div>
-                    <div id="a" class="guess-letter" draggable="true">W</div>
-                    <div id="a" class="guess-letter" draggable="true">X</div>
-                    <div id="a" class="guess-letter" draggable="true">Y</div>
-                    <div id="a" class="guess-letter" draggable="true">Z</div>
+                    <div id="a" class="guess-letter" draggable="true" ondragstart="onDragStart(event);">A</div>
+                    <div id="b" class="guess-letter" draggable="true" ondragstart="onDragStart(event);">B</div>
+                    <div id="c" class="guess-letter" draggable="true" ondragstart="onDragStart(event);">C</div>
+                    <div id="d" class="guess-letter" draggable="true" ondragstart="onDragStart(event);">D</div>
+                    <div id="e" class="guess-letter" draggable="true" ondragstart="onDragStart(event);">E</div>
+                    <div id="f" class="guess-letter" draggable="true" ondragstart="onDragStart(event);">F</div>
+                    <div id="g" class="guess-letter" draggable="true" ondragstart="onDragStart(event);">G</div>
+                    <div id="h" class="guess-letter" draggable="true" ondragstart="onDragStart(event);">H</div>
+                    <div id="i" class="guess-letter" draggable="true" ondragstart="onDragStart(event);">I</div>
+                    <div id="j" class="guess-letter" draggable="true" ondragstart="onDragStart(event);">J</div>
+                    <div id="k" class="guess-letter" draggable="true" ondragstart="onDragStart(event);">K</div>
+                    <div id="l" class="guess-letter" draggable="true" ondragstart="onDragStart(event);">L</div>
+                    <div id="m" class="guess-letter" draggable="true" ondragstart="onDragStart(event);">M</div>
+                    <div id="n" class="guess-letter" draggable="true" ondragstart="onDragStart(event);">N</div>
+                    <div id="o" class="guess-letter" draggable="true" ondragstart="onDragStart(event);">O</div>
+                    <div id="p" class="guess-letter" draggable="true" ondragstart="onDragStart(event);">P</div>
+                    <div id="q" class="guess-letter" draggable="true" ondragstart="onDragStart(event);">Q</div>
+                    <div id="r" class="guess-letter" draggable="true" ondragstart="onDragStart(event);">R</div>
+                    <div id="s" class="guess-letter" draggable="true" ondragstart="onDragStart(event);">S</div>
+                    <div id="t" class="guess-letter" draggable="true" ondragstart="onDragStart(event);">T</div>
+                    <div id="u" class="guess-letter" draggable="true" ondragstart="onDragStart(event);">U</div>
+                    <div id="v" class="guess-letter" draggable="true" ondragstart="onDragStart(event);">V</div>
+                    <div id="w" class="guess-letter" draggable="true" ondragstart="onDragStart(event);">W</div>
+                    <div id="x" class="guess-letter" draggable="true" ondragstart="onDragStart(event);">X</div>
+                    <div id="y" class="guess-letter" draggable="true" ondragstart="onDragStart(event);">Y</div>
+                    <div id="z" class="guess-letter" draggable="true" ondragstart="onDragStart(event);">Z</div>
                 </div>
                 <!-- droppable drop-zone -->
                 <!-- <div id="dropzone-success" class="letter-box">A</div> -->
@@ -62,6 +62,7 @@
             <section class="result-section">
                 <div class="core-block">
                     <div id="guesses-remaining">Guesses Remaining <span id="guesses">05</span></div>
+                    <div id="dropzone" ondragover="onDragOver(event);" ondrop="onDrop(event);">Drop Your Guess Here...</div>
                     <div id="blanks">
                         <div class="blank">__</div>
                         <div class="blank">__</div>
