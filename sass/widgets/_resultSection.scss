@@ -7,9 +7,8 @@
 
         display: flex;
         flex-direction: column;
-        
 
-        border: 1px solid $accent-color;
+        // border: 1px solid $accent-color;
 
         #guesses-remaining {
             @include center-xy;
@@ -19,6 +18,25 @@
                 display: block;
                 margin-left: 0.5rem;
             } 
+        }
+
+        #dropzone {
+            width: 80%;
+            height: 50px;
+            margin: 0 auto;
+
+            @include center-xy;
+            flex-direction: row;
+            flex-wrap: wrap;
+
+            color: lighten($color: $bg-color, $amount: 20);
+            border: 2px dashed lighten($color: $bg-color, $amount: 20);
+
+            div {
+                width: 5%;
+                margin: 5px;
+                padding: 5px;
+            }
         }
 
         #blanks {
@@ -34,7 +52,7 @@
     .hangman-block {
         height: 100%;
         width: 35%;
-        border: 1px solid $accent-color;
+        // border: 1px solid $accent-color;
 
         @include center-xy;
     }
