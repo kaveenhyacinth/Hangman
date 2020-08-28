@@ -9,6 +9,7 @@ var isTeamOne = true;
 var wordToGuess;
 var numberOfBlanks;
 
+/* get team name | get secret word to guess | generate blanks */
 window.onload = () => {
 
     var Team1 = prompt("Enter Team 1 Name");
@@ -21,11 +22,12 @@ window.onload = () => {
 
     TeamOne.innerText = Team1.toUpperCase();
     TeamTwo.innerText = Team2.toUpperCase();
+    wordToGuess = wordToGuess.toUpperCase();
 
     numberOfBlanks = countBlanks(wordToGuess);
 
     for(let i=0; i < numberOfBlanks; i++) {
-        blanksContainer.innerHTML += "<div class='blank'>__</div>";
+        blanksContainer.innerHTML += `<div id='blank-${i}' class='blank'>__</div>`;
     }
 
     // debug wordToGuess and round status
@@ -34,10 +36,10 @@ window.onload = () => {
     console.log(countBlanks(wordToGuess));
 }
 
+/* Count the length of the entered secret word */
 const countBlanks = (word) => {
     return word.length;
 }
-
 
 /*=== Drag and drop start ===*/
 
@@ -59,33 +61,75 @@ const onDragStart = event => {
         .color = '#000';
 }
 
-
 // allow to dragover
 const onDragOver = event => {
     event.preventDefault();
 }
 
-
 // pass and append the data in dropzone
 const onDrop = event => {
     event.preventDefault();
 
+    // clear dropzone default text on the first attempt
     if(isFirstTime === true) {
-        // clear dropzone default text
         dropzoneDiv.innerText = "";
         isFirstTime = false;
     }
-    
     
     // save grabbed id from the datatranser
     const id = event.dataTransfer.getData('text');
 
     const draggableElement = document.getElementById(id);
     const dropZone = event.target;
-
     dropZone.appendChild(draggableElement);
+
+    var guessLetter = draggableElement.innerText;
+
+    var indexArray = guessChecker(wordToGuess, guessLetter);
+
+    replaceBlanks(indexArray, guessLetter);
+
+    console.log(guessLetter);
+    // console.log(wordToGuess);
+    // console.log(guessChecker(wordToGuess, guessLetter));
 
     event.dataTransfer.clearData();
 }
 
 /*=== Drag and drop end ===*/
+
+// Check whether word has the guessed letter
+const guessChecker = (word, guess) => {
+
+    if(word.includes(guess)) {
+        return guessLetterIndexes(word, guess);
+    } else {
+        // TODO: function when a guess went wrong
+    }
+}
+
+// Get the indexes which contains the guessed letter
+const guessLetterIndexes = (word, guess) => {
+    var indices = [];
+
+    for(let i=0; i < word.length; i++) {
+        if(word[i] === guess) {
+            indices.push(i);
+        }
+    }
+
+    return indices;
+}
+
+// replace guess letters with blanks
+const replaceBlanks = (indexArray, guess) => {
+    for(let i=0; i < indexArray.length; i++) {
+        const replace = document.querySelector(`#blank-${indexArray[i]}`);
+        var stringToReplace = replace.innerText;
+        var resultToReplace = stringToReplace.replace("__", guess);
+        replace.innerText = resultToReplace;
+        console.log("replaceBlanks is running");
+        console.log(replace.innerText);
+    }
+}
+

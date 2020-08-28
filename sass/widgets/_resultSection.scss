@@ -27,6 +27,7 @@
 
             @include center-xy;
             flex-direction: row;
+            flex-wrap: wrap;
 
             color: lighten($color: $bg-color, $amount: 20);
             border: 2px dashed lighten($color: $bg-color, $amount: 20);
