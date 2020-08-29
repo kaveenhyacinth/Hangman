@@ -134,6 +134,9 @@ html, body {
           justify-content: center;
           align-items: center;
           flex-direction: row; }
+          .wrapper .main-container .result-section .core-block #guesses-remaining #rounds {
+            display: block;
+            margin-left: 0.5rem; }
           .wrapper .main-container .result-section .core-block #guesses-remaining #guesses {
             display: block;
             margin-right: 0.5rem; }
@@ -162,7 +165,7 @@ html, body {
           align-items: center;
           flex-direction: row; }
           .wrapper .main-container .result-section .core-block #blanks .blank {
-            margin: 0rem 0.2rem; }
+            margin: 0.5rem 0.2rem; }
   .wrapper .footer-container {
     background: #28273a;
     color: #fff;

@@ -3,6 +3,7 @@ const TeamTwo = document.querySelector("#team-2");
 const scoreOne = document.querySelector("#score-1");
 const scoreTwo = document.querySelector("#score-2");
 const livesLeft = document.querySelector("#guesses");
+const rounds = document.querySelector("#rounds");
 const dropzoneDiv = document.querySelector("#dropzone");
 const origin = document.querySelector("#origin");
 const wrongDropZone = document.querySelector("#dropzone-wrong");
@@ -15,6 +16,7 @@ var dropzoneClone = dropzoneDiv.cloneNode(true);
 var isFirstTime = true;
 var isTeamOne = true;
 var lives = 5;
+var roundsCount = 0;
 var Score1 = 0;
 var Score2 =0;
 
@@ -57,6 +59,10 @@ const getSecretWord = () => {
     }
 
     wordToGuess = wordToGuess.toUpperCase();
+
+    // increase round by 1
+    roundsCount++;
+    rounds.innerHTML = roundsCount;
 }
 
 // generate blanks according to secret word
