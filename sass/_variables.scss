@@ -2,11 +2,12 @@
 $primary-color: #2C4B3C;
 $secondary-color: #F7C81E;
 $text-color: #FFFFFF;
-$accent-color: #7CBABC;
+$accent-color: darken(#7CBABC, 10);
 $success-color: #559C7F;
 $fail-color: #EB6E48;
 $bg-color: #333149;
 
+// #333149; #7CBABC
 // Global font settings
 $primary-font: 'Merriweather', serif;
 $secondary-font: 'Montserrat', sans-serif;

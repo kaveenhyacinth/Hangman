@@ -36,7 +36,7 @@ html, body{
     grid-template-columns: repeat(12, 1fr);
     grid-template-rows: 1fr;
     grid-template-areas: 
-        "t1 s1 H H H H H H H H s2 t2";
+        "t1 t1 s1 H H H H H H s2 t2 t2";
 
     #team-1, #team-2,
     #score-1, #score-2, .heading {

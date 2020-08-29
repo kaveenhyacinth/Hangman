@@ -3,6 +3,7 @@ const TeamTwo = document.querySelector("#team-2");
 const scoreOne = document.querySelector("#score-1");
 const scoreTwo = document.querySelector("#score-2");
 const livesLeft = document.querySelector("#guesses");
+const rounds = document.querySelector("#rounds");
 const dropzoneDiv = document.querySelector("#dropzone");
 const origin = document.querySelector("#origin");
 const wrongDropZone = document.querySelector("#dropzone-wrong");
@@ -15,6 +16,7 @@ var dropzoneClone = dropzoneDiv.cloneNode(true);
 var isFirstTime = true;
 var isTeamOne = true;
 var lives = 5;
+var roundsCount = 0;
 var Score1 = 0;
 var Score2 =0;
 
@@ -27,10 +29,12 @@ var Team1, Team2;
 /* get team name | get secret word to guess | generate blanks */
 window.onload = () => {
 
-    Team1 = prompt("Enter Team 1 Name");
-    Team2 = prompt("Enter Team 2 Name");
+    Team1 = prompt("Enter First Team's Name");
+    Team2 = prompt("Enter Second Team's Name");
 
     getSecretWord();
+
+    alert("Drag and drop letters to guess the secret word");
 
     TeamOne.innerText = Team1.toUpperCase();
     TeamTwo.innerText = Team2.toUpperCase();
@@ -49,12 +53,16 @@ window.onload = () => {
 // grab the secret word
 const getSecretWord = () => {
     if(isTeamOne) {
-        wordToGuess = prompt(`Team ${Team1.toUpperCase()} please enter a secret word to guess`);
+        wordToGuess = prompt(`Hey ${Team1.toUpperCase()}, please enter your secret word`);
     } else {
-        wordToGuess = prompt(`Team ${Team2.toUpperCase()} please enter a secret word to guess`);
+        wordToGuess = prompt(`Hey ${Team2.toUpperCase()}, please enter your secret word`);
     }
 
     wordToGuess = wordToGuess.toUpperCase();
+
+    // increase round by 1
+    roundsCount++;
+    rounds.innerHTML = roundsCount;
 }
 
 // generate blanks according to secret word
@@ -113,6 +121,10 @@ const onDrop = event => {
 
     const draggableElement = document.getElementById(id);
     const dropZone = event.target;
+
+    draggableElement.style.backgroundColor = "#559C7F";
+    draggableElement.style.color = "#FFF";
+
     dropZone.appendChild(draggableElement);
 
     var guessLetter = draggableElement.innerText;
@@ -143,7 +155,7 @@ const guessChecker = (word, guess, id) => {
     } else {
         const wrongLetter = document.getElementById(id);
 
-        if(wrongDropZone.innerText === "Wrong Guesses...") {
+        if(wrongDropZone.innerText === "Wrong Guesses Goes Here...") {
             wrongDropZone.innerText = "";
         }
 
