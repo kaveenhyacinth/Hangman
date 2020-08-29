@@ -1,47 +1,73 @@
 const TeamOne = document.querySelector("#team-1");
 const TeamTwo = document.querySelector("#team-2");
+const scoreOne = document.querySelector("#score-1");
+const scoreTwo = document.querySelector("#score-2");
+const livesLeft = document.querySelector("#guesses");
 const dropzoneDiv = document.querySelector("#dropzone");
+const origin = document.querySelector("#origin");
+const wrongDropZone = document.querySelector("#dropzone-wrong");
 const blanksContainer = document.querySelector("#blanks");
+
+var originClone = origin.cloneNode(true);
+var wrongDropzoneClone = wrongDropZone.cloneNode(true);
+var dropzoneClone = dropzoneDiv.cloneNode(true);
 
 var isFirstTime = true;
 var isTeamOne = true;
+var lives = 5;
+var Score1 = 0;
+var Score2 =0;
 
 var wordToGuess;
 var numberOfBlanks;
+var guessRun;
+var Team1, Team2;
+
 
 /* get team name | get secret word to guess | generate blanks */
 window.onload = () => {
 
-    var Team1 = prompt("Enter Team 1 Name");
-    var Team2 = prompt("Enter Team 2 Name");
+    Team1 = prompt("Enter Team 1 Name");
+    Team2 = prompt("Enter Team 2 Name");
 
-    if(isTeamOne) {
-        wordToGuess = prompt(`Team ${Team1.toUpperCase()} please enter a secret word to guess`);
-        isTeamOne = !isTeamOne;
-    }
+    getSecretWord();
 
     TeamOne.innerText = Team1.toUpperCase();
     TeamTwo.innerText = Team2.toUpperCase();
-    wordToGuess = wordToGuess.toUpperCase();
 
-    numberOfBlanks = countBlanks(wordToGuess);
+    generateBlanks();
+
+    // debugging...
+    console.log("onLoad is running");
+    console.log(wordToGuess.toUpperCase());
+    console.log(isTeamOne);
+    console.log(wordToGuess.length);
+}
+
+/*=== Drag and drop start ===*/
+
+// grab the secret word
+const getSecretWord = () => {
+    if(isTeamOne) {
+        wordToGuess = prompt(`Team ${Team1.toUpperCase()} please enter a secret word to guess`);
+    } else {
+        wordToGuess = prompt(`Team ${Team2.toUpperCase()} please enter a secret word to guess`);
+    }
+
+    wordToGuess = wordToGuess.toUpperCase();
+}
+
+// generate blanks according to secret word
+const generateBlanks = () => {
+
+    /* Count the length of the entered secret word */
+    numberOfBlanks = wordToGuess.length;
+    guessRun = wordToGuess.length;
 
     for(let i=0; i < numberOfBlanks; i++) {
         blanksContainer.innerHTML += `<div id='blank-${i}' class='blank'>__</div>`;
     }
-
-    // debug wordToGuess and round status
-    console.log(wordToGuess.toUpperCase());
-    console.log(isTeamOne);
-    console.log(countBlanks(wordToGuess));
 }
-
-/* Count the length of the entered secret word */
-const countBlanks = (word) => {
-    return word.length;
-}
-
-/*=== Drag and drop start ===*/
 
 // get targeted item's id to transfer
 const onDragStart = event => {
@@ -59,11 +85,17 @@ const onDragStart = event => {
         .currentTarget
         .style
         .color = '#000';
+
+    // debugging...
+    console.log("onDragStart is running");
 }
 
 // allow to dragover
 const onDragOver = event => {
     event.preventDefault();
+
+    // debugging...
+    console.log("onDragOver is running");
 }
 
 // pass and append the data in dropzone
@@ -85,13 +117,18 @@ const onDrop = event => {
 
     var guessLetter = draggableElement.innerText;
 
-    var indexArray = guessChecker(wordToGuess, guessLetter);
+    var indexArray = guessChecker(wordToGuess, guessLetter, id);
 
-    replaceBlanks(indexArray, guessLetter);
+    if(indexArray != -1) {
+        replaceBlanks(indexArray, guessLetter);
+    }
 
+    findSessionWinner();
+
+    // debugging
+    console.log("onDrop is running");
     console.log(guessLetter);
-    // console.log(wordToGuess);
-    // console.log(guessChecker(wordToGuess, guessLetter));
+    console.log(guessChecker(wordToGuess, guessLetter));
 
     event.dataTransfer.clearData();
 }
@@ -99,13 +136,29 @@ const onDrop = event => {
 /*=== Drag and drop end ===*/
 
 // Check whether word has the guessed letter
-const guessChecker = (word, guess) => {
+const guessChecker = (word, guess, id) => {
 
     if(word.includes(guess)) {
         return guessLetterIndexes(word, guess);
     } else {
-        // TODO: function when a guess went wrong
+        const wrongLetter = document.getElementById(id);
+
+        if(wrongDropZone.innerText === "Wrong Guesses...") {
+            wrongDropZone.innerText = "";
+        }
+
+        wrongLetter.style.backgroundColor = "#EB6E48";
+        wrongLetter.style.color = "#FFF";
+        wrongDropZone.appendChild(wrongLetter);
+
+        lives -= 1;
+        livesLeft.innerText = `0${lives}`;
+
+        return -1;
     }
+
+    // debugging...
+    console.log("guessChecker is running");
 }
 
 // Get the indexes which contains the guessed letter
@@ -118,18 +171,87 @@ const guessLetterIndexes = (word, guess) => {
         }
     }
 
+    // debugging...
+    console.log("guessLetterIndexes is running");
+
     return indices;
 }
 
 // replace guess letters with blanks
 const replaceBlanks = (indexArray, guess) => {
+
     for(let i=0; i < indexArray.length; i++) {
         const replace = document.querySelector(`#blank-${indexArray[i]}`);
+
         var stringToReplace = replace.innerText;
         var resultToReplace = stringToReplace.replace("__", guess);
         replace.innerText = resultToReplace;
+
+        guessRun -= 1;
+
+        // debugging...
         console.log("replaceBlanks is running");
         console.log(replace.innerText);
     }
 }
 
+// find the winner
+const findSessionWinner = () => {
+
+    var sessionLead = isTeamOne ? Team1 : Team2;
+    var sessionRunner = isTeamOne ? Team2 : Team1;
+
+    if(lives === 0) {
+        var winMsg = `🎉 ${sessionLead} has won 🎉`;
+        scoreUpdater(sessionLead);
+        alert(winMsg.toUpperCase());
+        newSession();
+    } else if(guessRun === 0) {
+        var winMsg = `🎉 ${sessionRunner} has won 🎉`;
+        scoreUpdater(sessionRunner);
+        alert(winMsg.toUpperCase());
+        newSession();
+    }
+
+    // debugging...
+    console.log("findSessionWinner is running");
+    console.log(`lead: ${ssessionLead} and runner: ${sessionRunner}`);
+}
+
+// Score updater
+const scoreUpdater = (Lead) => {
+    if(Lead == Team1) {
+        Score1++;
+        scoreOne.innerHTML = `0${Score1}`;
+    } else if(Lead == Team2) {
+        Score2++;
+        scoreTwo.innerHTML = `0${Score2}`;
+    }
+
+    // debugging...
+    console.log("scoreUpdater is running");
+    console.log(`Score1: ${Score1} and Score2: ${Score2}`);
+}
+
+// clean the current session
+const cleanSession = () => {
+    blanksContainer.innerHTML = "";
+    lives = 5;
+    isFirstTime = true;
+    isTeamOne = !isTeamOne;
+    wordToGuess = "";
+    numberOfBlanks = guessRun = 0;
+
+    origin.innerHTML = originClone.innerHTML;
+    wrongDropZone.innerHTML = wrongDropzoneClone.innerHTML;
+    dropzoneDiv.innerHTML = dropzoneClone.innerHTML;
+
+    livesLeft.innerText = `0${lives}`;
+}
+
+// open a new session
+const newSession = () => {
+    cleanSession();
+    getSecretWord();
+    generateBlanks();
+}

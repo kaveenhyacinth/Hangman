@@ -25,5 +25,12 @@
 
     #dropzone-wrong {
         @include center-xy;
+        flex-direction: row;
+
+        div {
+            width: 5%;
+            margin: 5px;
+            padding: 5px;
+        }
     }
 }

@@ -114,7 +114,12 @@ html, body {
         flex-direction: column;
         flex: 1;
         justify-content: center;
-        align-items: center; }
+        align-items: center;
+        flex-direction: row; }
+        .wrapper .main-container .guess-section #dropzone-wrong div {
+          width: 5%;
+          margin: 5px;
+          padding: 5px; }
     .wrapper .main-container .result-section {
       padding: 0.5rem; }
       .wrapper .main-container .result-section .core-block {
@@ -184,7 +189,7 @@ html, body {
           .wrapper .main-container .result-section .action-btns button#restart {
             background: #559C7F; }
   .wrapper .footer-container {
-    background: #2C4B3C;
+    background: #28273a;
     color: #fff;
     font-size: 0.8rem; }
 
