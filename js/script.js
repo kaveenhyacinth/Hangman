@@ -4,8 +4,13 @@ const scoreOne = document.querySelector("#score-1");
 const scoreTwo = document.querySelector("#score-2");
 const livesLeft = document.querySelector("#guesses");
 const dropzoneDiv = document.querySelector("#dropzone");
+const origin = document.querySelector("#origin");
 const wrongDropZone = document.querySelector("#dropzone-wrong");
 const blanksContainer = document.querySelector("#blanks");
+
+var originClone = origin.cloneNode(true);
+var wrongDropzoneClone = wrongDropZone.cloneNode(true);
+var dropzoneClone = dropzoneDiv.cloneNode(true);
 
 var isFirstTime = true;
 var isTeamOne = true;
@@ -29,13 +34,14 @@ window.onload = () => {
 
     TeamOne.innerText = Team1.toUpperCase();
     TeamTwo.innerText = Team2.toUpperCase();
-    wordToGuess = wordToGuess.toUpperCase();
-    
+
+    generateBlanks();
+
     // debugging...
     console.log("onLoad is running");
     console.log(wordToGuess.toUpperCase());
     console.log(isTeamOne);
-    console.log(countBlanks(wordToGuess));
+    console.log(wordToGuess.length);
 }
 
 /*=== Drag and drop start ===*/
@@ -47,10 +53,13 @@ const getSecretWord = () => {
     } else {
         wordToGuess = prompt(`Team ${Team2.toUpperCase()} please enter a secret word to guess`);
     }
+
+    wordToGuess = wordToGuess.toUpperCase();
 }
 
 // generate blanks according to secret word
 const generateBlanks = () => {
+
     /* Count the length of the entered secret word */
     numberOfBlanks = wordToGuess.length;
     guessRun = wordToGuess.length;
@@ -196,10 +205,12 @@ const findSessionWinner = () => {
         var winMsg = `🎉 ${sessionLead} has won 🎉`;
         scoreUpdater(sessionLead);
         alert(winMsg.toUpperCase());
+        newSession();
     } else if(guessRun === 0) {
         var winMsg = `🎉 ${sessionRunner} has won 🎉`;
         scoreUpdater(sessionRunner);
         alert(winMsg.toUpperCase());
+        newSession();
     }
 
     // debugging...
@@ -222,11 +233,25 @@ const scoreUpdater = (Lead) => {
     console.log(`Score1: ${Score1} and Score2: ${Score2}`);
 }
 
-// session handler
-const newSession = () => {
+// clean the current session
+const cleanSession = () => {
+    blanksContainer.innerHTML = "";
+    lives = 5;
+    isFirstTime = true;
     isTeamOne = !isTeamOne;
-    wordToGuess = null;
-    scoreOne = scoreTwo = 0;
+    wordToGuess = "";
+    numberOfBlanks = guessRun = 0;
+
+    origin.innerHTML = originClone.innerHTML;
+    wrongDropZone.innerHTML = wrongDropzoneClone.innerHTML;
+    dropzoneDiv.innerHTML = dropzoneClone.innerHTML;
+
+    livesLeft.innerText = `0${lives}`;
 }
 
-
+// open a new session
+const newSession = () => {
+    cleanSession();
+    getSecretWord();
+    generateBlanks();
+}
