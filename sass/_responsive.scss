@@ -1,0 +1,47 @@
+@media only screen and (max-width: 800px) {
+
+}
+
+@media screen and (max-width: 800px) {
+    .header-container {
+        grid-template-areas: 
+            "H H H H H H H H H H H H"
+            "t1 t1 t1 t1 s1 s1 s2 s2 t2 t2 t2 t2";
+    }
+
+    .team, .score {
+        height: 50px;
+    }
+
+    #score-1 {
+        border-right: 1px solid $bg-color;
+    }
+
+    .score {
+        padding: 0 5px;
+    }
+
+    .heading {
+        margin-bottom: 1rem;
+        font-size: 1.5rem;
+        letter-spacing: 0.2rem;
+
+        #sub-heading {
+            font-size: 0.8rem;
+        }
+    }
+
+    .guess-section {
+        padding: 10px;
+        display: flex;
+        flex-direction: column-reverse;
+    }
+
+    #origin, #dropzone-wrong {
+        width: 100%;
+    }
+
+    .result-section {
+        padding: 10px;
+    }
+}
